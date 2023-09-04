@@ -1,7 +1,6 @@
 package namkyu.and.mz.homeshopping.repository;
 
 import namkyu.and.mz.homeshopping.constant.ItemSellStatus;
-import namkyu.and.mz.homeshopping.entity.Item;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
