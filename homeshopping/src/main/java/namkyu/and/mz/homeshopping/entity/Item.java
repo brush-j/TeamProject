@@ -2,14 +2,17 @@ package namkyu.and.mz.homeshopping.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import namkyu.and.mz.homeshopping.constant.ItemSellStatus;
+import namkyu.and.mz.homeshopping.dto.ItemFormDto;
 
 import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Table(name ="item")
-public class Item {
+@ToString
+public class Item extends BaseEntity{
     @Id
     @Column(name="item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,4 +37,12 @@ public class Item {
     private LocalDateTime regTime;
 
     private LocalDateTime updateTime;
+
+    public void updateItem(ItemFormDto itemFormDto){
+        this.itemNm = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 }
