@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 import namkyu.and.mz.homeshopping.constant.ItemSellStatus;
 import namkyu.and.mz.homeshopping.dto.ItemFormDto;
+import namkyu.and.mz.homeshopping.exception.OutOfStockException;
 
 import java.time.LocalDateTime;
 
@@ -44,5 +45,16 @@ public class Item extends BaseEntity{
         this.stockNumber = itemFormDto.getStockNumber();
         this.itemDetail = itemFormDto.getItemDetail();
         this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
+    public void removeStock(int stockNumber){
+        int restStock = this.stockNumber - stockNumber;
+        if(restStock<0){
+            throw new OutOfStockException("상품의 재고가 부족 합니다." +
+                    "(현재 재고 수량: " + this.stockNumber + ")");
+        }
+        this.stockNumber = restStock;
+    }
+    public void addStock(int stockNumber){
+        this.stockNumber += stockNumber;
     }
 }
