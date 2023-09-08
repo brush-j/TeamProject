@@ -13,14 +13,14 @@
   <script th:inline="javascript">
         $(document).ready(function(){
 
-            calculateToalPrice();
+            calculateTotalPrice();
 
             $("#count").change( function(){
-                calculateToalPrice();
+                calculateTotalPrice();
             });
         });
 
-        function calculateToalPrice(){
+        function calculateTotalPrice(){
             var count = $("#count").val();
             var price = $("#price").val();
             var totalPrice = price*count;
@@ -45,7 +45,7 @@
                 contentType : "application/json",
                 data     : param,
                 beforeSend : function(xhr){
-                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    /* 데이터를 전송하기 전에 헤더에 csrf 값을 설정 */
                     xhr.setRequestHeader(header, token);
                 },
                 dataType : "json",
@@ -85,7 +85,7 @@
                 contentType : "application/json",
                 data     : param,
                 beforeSend : function(xhr){
-                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    /* 데이터를 전송하기 전에 헤더에 csrf 값을 설정 */
                     xhr.setRequestHeader(header, token);
                 },
                 dataType : "json",
