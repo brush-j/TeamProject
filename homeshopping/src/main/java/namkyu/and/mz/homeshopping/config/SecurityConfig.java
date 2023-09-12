@@ -1,6 +1,7 @@
 package namkyu.and.mz.homeshopping.config;
 
 import namkyu.and.mz.homeshopping.service.MemberService;
+import namkyu.and.mz.homeshopping.service.PrincipalOauth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,9 @@ public class SecurityConfig {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    PrincipalOauth2UserService principalOauth2UserService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -36,6 +40,12 @@ public class SecurityConfig {
                 .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
+                .and()
+                .oauth2Login(oAuth -> oAuth
+                        .loginPage("/member/login")
+                        .defaultSuccessUrl("/", true)
+                        .userInfoEndpoint(userInfo-> userInfo
+                                .userService(principalOauth2UserService)))
         ;
 
         http.exceptionHandling()
