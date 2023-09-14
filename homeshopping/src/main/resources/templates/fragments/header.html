@@ -39,7 +39,7 @@
                         type="submit">Search</button>
             </form>
             <br>
-            <a href="/members/new" class="btn btn-outline-success my-2 my-sm-0">회원가입<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="/members/new" class="btn btn-outline-success my-2 my-sm-0" sec:authorize="isAnonymous()">회원가입<i class="fa fa-arrow-right ms-3"></i></a>
     </div>
     </nav>
     </div>
