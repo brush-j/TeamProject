@@ -23,7 +23,7 @@ public class ItemImg extends BaseEntity{
 
     private String repimgYn;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
     private Item item;
 

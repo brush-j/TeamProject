@@ -31,7 +31,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         String name = oAuth2User.getAttribute("email");
         String password = UUID.randomUUID().toString();
         String email = oAuth2User.getAttribute("email");
-        String role = String.valueOf(Role.ROLE_ADMIN);
+        String role = String.valueOf(Role.ROLE_USER);
 
         Member memberEntity = memberRepository.findByName(name);
 
@@ -40,7 +40,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .name(name)
                     .email(email)
                     .password(password)
-                    .role(Role.ROLE_ADMIN)
+                    .role(Role.ROLE_USER)
                     .provider(provider)
                     .providerId(providerId)
                     .build();
@@ -72,7 +72,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                             oAuth2UserInfo.getProviderId())
                     .email(oAuth2UserInfo.getEmail())
                     .password(UUID.randomUUID().toString())
-                    .role(Role.ROLE_ADMIN)
+                    .role(Role.ROLE_USER)
                     .provider(oAuth2UserInfo.getProvider())
                     .providerId(oAuth2UserInfo.getProviderId())
                     .build();

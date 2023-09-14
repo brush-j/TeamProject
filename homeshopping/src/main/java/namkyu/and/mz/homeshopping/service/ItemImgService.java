@@ -1,14 +1,18 @@
 package namkyu.and.mz.homeshopping.service;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import namkyu.and.mz.homeshopping.entity.ItemImg;
 import namkyu.and.mz.homeshopping.repository.ItemImgRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
+
+import static namkyu.and.mz.homeshopping.entity.QItem.item;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +59,13 @@ public class ItemImgService {
             String imgUrl = "/images/item/" + imgName;
             savedItemImg.updateItemImg(oriImgName, imgName, imgUrl);
         }
+    }
+
+
+
+    public void deleteItemImg(Long itemImgId){
+
+            itemImgRepository.deleteById(itemImgId);
     }
 
 

@@ -8,12 +8,14 @@ import namkyu.and.mz.homeshopping.dto.ItemFormDto;
 import namkyu.and.mz.homeshopping.exception.OutOfStockException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name ="item")
 @ToString
 public class Item extends BaseEntity{
+
     @Id
     @Column(name="item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,9 +37,8 @@ public class Item extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus;
 
-    private LocalDateTime regTime;
-
-    private LocalDateTime updateTime;
+    @OneToMany(mappedBy = "item", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<ItemImg> itemImg;
 
     public void updateItem(ItemFormDto itemFormDto){
         this.itemNm = itemFormDto.getItemNm();
