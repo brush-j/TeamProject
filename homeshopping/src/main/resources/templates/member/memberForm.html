@@ -28,7 +28,7 @@
 
 <div layout:fragment="content">
 
-  <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}">
+  <form th:action="@{/members/new}" role="form" method="post"  th:object="${memberFormDto}">
     <div class="container-fluid py-5">
       <div class="container">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
@@ -66,13 +66,12 @@
                     <input type="text" class="form-control border-0" th:field="*{address}" placeholder="주소를 입력해주세요.">
                     <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
                   </div>
-                  <br>
                 </div>
                 </div>
-                <div class="col-12 text-center">
-                  <br>
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">회원가입완료</button>
-                </div>
+              <div class="col-12 text-center">
+                <br>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">회원가입완료</button>
+              </div>
               </div>
             </div>
           </div>

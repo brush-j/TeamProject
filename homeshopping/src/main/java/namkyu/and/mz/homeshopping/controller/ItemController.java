@@ -10,6 +10,7 @@ import namkyu.and.mz.homeshopping.service.ItemService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -87,10 +88,16 @@ public class ItemController {
         return "redirect:/";
     }
 
+    @PostMapping(value = "/admin/item/delete")
+    public String itemDelete(ItemFormDto itemFormDto){
+        itemService.deleteItem(itemFormDto.getId());
+        return "redirect:/";
+    }
+
     @GetMapping(value = {"/admin/items", "/admin/items/{page}"})
     public String itemManage(ItemSearchDto itemSearchDto,
                              @PathVariable("page")Optional<Integer> page, Model model){
-        Pageable pageable = PageRequest.of(page.isPresent()? page.get() : 0, 3);
+        Pageable pageable = PageRequest.of(page.isPresent()? page.get() : 0, 6);
         Page<Item> items =
                 itemService.getAdminItemPage(itemSearchDto, pageable);
         model.addAttribute("items", items);

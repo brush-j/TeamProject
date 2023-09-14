@@ -127,4 +127,9 @@ public class CartService {
         return orderId;
     }
 
+    public void cartDelete(Long cartItemId){
+        cartItemRepository.deleteById(cartItemId);
+        cartRepository.deleteById(cartItemId);
+    }
+
 }

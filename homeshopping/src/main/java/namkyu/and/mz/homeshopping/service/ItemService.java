@@ -6,6 +6,7 @@ import namkyu.and.mz.homeshopping.dto.ItemFormDto;
 import namkyu.and.mz.homeshopping.dto.ItemImgDto;
 import namkyu.and.mz.homeshopping.dto.ItemSearchDto;
 import namkyu.and.mz.homeshopping.dto.MainItemDto;
+import namkyu.and.mz.homeshopping.entity.CartItem;
 import namkyu.and.mz.homeshopping.entity.Item;
 import namkyu.and.mz.homeshopping.entity.ItemImg;
 import namkyu.and.mz.homeshopping.repository.ItemImgRepository;
@@ -28,6 +29,7 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final ItemImgService itemImgService;
     private final ItemImgRepository itemImgRepository;
+    private final CartService cartService;
 
     public Long saveItem(ItemFormDto itemFormDto,
                          List<MultipartFile> itemImgFileList) throws Exception{
@@ -78,6 +80,15 @@ public class ItemService {
                     itemImgFileList.get(i));
         }
         return item.getId();
+    }
+
+    @Transactional
+    public void deleteItem(Long id){
+
+        cartService.cartDelete(id);
+        itemImgService.deleteItemImg(id);
+        itemRepository.deleteById(id);
+
     }
 
     @Transactional(readOnly = true)

@@ -1,5 +1,6 @@
 package namkyu.and.mz.homeshopping.service;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import namkyu.and.mz.homeshopping.entity.Member;
 import namkyu.and.mz.homeshopping.repository.MemberRepository;
