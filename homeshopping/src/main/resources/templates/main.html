@@ -7,7 +7,7 @@
 <th:block layout:fragment="css">
   <style>
         .carousel-inner > .item {
-            height: 350px;
+            height: 800px;
         }
         .margin{
             margin-bottom:30px;
@@ -37,7 +37,7 @@
   <div id="carouselControls" class="carousel slide margin" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active item">
-        <img class="d-block w-100 banner" src="https://user-images.githubusercontent.com/13268420/112147492-1ab76200-8c20-11eb-8649-3d2f282c3c02.png" alt="First slide">
+        <img class="d-block w-100 banner" src="https://img.freepik.com/free-psd/fashion-typography-banner-template_23-2148937549.jpg?w=1380&t=st=1694583609~exp=1694584209~hmac=9e7b6ba1c84a231d0639406baf28c84b53f1408b827544101bd8c68836651e06" alt="First slide">
       </div>
     </div>
   </div>
@@ -69,7 +69,7 @@
 
       <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
         <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
-          <span aria-hidden='true'>Previous</span>
+          <span aria-hidden='true'>이전</span>
         </a>
       </li>
 
@@ -79,7 +79,7 @@
 
       <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
         <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
-          <span aria-hidden='true'>Next</span>
+          <span aria-hidden='true'>다음</span>
         </a>
       </li>
 
